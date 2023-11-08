@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cambio de Imagen al Pasar el Ratón</title>
+    <style>
+        #image {
+            width: 300px;
+            transition: transform 0.5s;
+        }
+        #image:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <img id="image" src="imagen1.jpg" onmouseover="changeImage()" onmouseout="changeImageBack()">
+
+    <script>
+        var image = document.getElementById("image");
+        var originalImage = "imagen1.jpg";
+        var newImage = "imagen2.jpg";
+
+        function changeImage() {
+            image.src = newImage;
+        }
+
+        function changeImageBack() {
+            image.src = originalImage;
+        }
+    </script>
+
+</body>
+</html>

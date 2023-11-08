@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #quiz {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #score {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz">
+    <h2>Quiz</h2>
+    <div id="question"></div>
+</div>
+
+<div id="score"></div>
+
+<script>
+    var questions = [
+        {
+            question: "¿Cuál es la capital de Francia?",
+            options: ["Berlín", "Londres", "París", "Madrid"],
+            answer: "París"
+        },
+        {
+            question: "¿Cuál es el río más largo del mundo?",
+            options: ["Amazonas", "Nilo", "Misisipi", "Yangtsé"],
+            answer: "Amazonas"
+        }
+    ];
+
+    var currentQuestion = 0;
+    var score = 0;
+
+    var quizContainer = document.getElementById('quiz');
+    var scoreContainer = document.getElementById('score');
+
+    function displayQuestion() {
+        var q = questions[currentQuestion];
+        var questionElement = document.getElementById('question');
+        questionElement.innerHTML = q.question + "<br>";
+        for (var i = 0; i < q.options.length; i++) {
+            var btn = document.createElement("button");
+            btn.innerHTML = q.options[i];
+            btn.onclick = checkAnswer;
+            questionElement.appendChild(btn);
+        }
+    }
+
+    function checkAnswer() {
+        if (this.innerHTML === questions[currentQuestion].answer) {
+            score++;
+        }
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            quizContainer.style.display = 'none';
+            scoreContainer.innerHTML = "Puntuación final: " + score + " de " + questions.length;
+        }
+    }
+
+    displayQuestion();
+</script>
+
+</body>
+</html>
+

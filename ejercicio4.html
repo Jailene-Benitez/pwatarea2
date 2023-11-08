@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #clock {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border: 10px solid #333;
+            border-radius: 50%;
+            margin: 100px auto;
+        }
+        .hand {
+            position: absolute;
+            background-color: black;
+            transform-origin: 50% 100%;
+        }
+        #hour {
+            width: 8px;
+            height: 60px;
+            top: 50px;
+            left: 96px;
+        }
+        #minute {
+            width: 4px;
+            height: 80px;
+            top: 40px;
+            left: 98px;
+        }
+        #second {
+            width: 2px;
+            height: 90px;
+            top: 30px;
+            left: 99px;
+            background-color: red;
+        }
+        .number {
+            position: absolute;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="clock">
+    <div id="hour" class="hand"></div>
+    <div id="minute" class="hand"></div>
+    <div id="second" class="hand"></div>
+    <div class="number" style="top: 18px; left: 85px;">12</div>
+    <div class="number" style="top: 25px; left: 162px;">1</div>
+    <div class="number" style="top: 65px; left: 180px;">2</div>
+    <div class="number" style="top: 115px; left: 165px;">3</div>
+    <div class="number" style="top: 160px; left: 135px;">4</div>
+    <div class="number" style="top: 180px; left: 80px;">5</div>
+    <div class="number" style="top: 160px; left: 28px;">6</div>
+    <div class="number" style="top: 115px; left: 10px;">7</div>
+    <div class="number" style="top: 65px; left: 25px;">8</div>
+    <div class="number" style="top: 25px; left: 50px;">9</div>
+    <div class="number" style="top: 65px; left: 50px;">10</div>
+    <div class="number" style="top: 115px; left: 50px;">11</div>
+</div>
+
+<script>
+    var hourHand = document.getElementById('hour');
+    var minuteHand = document.getElementById('minute');
+    var secondHand = document.getElementById('second');
+
+    function setClock() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        var hourDeg = (hours % 12) * 30 + minutes * 0.5; // 360 degrees in 12 hours, 30 degrees per hour, 0.5 degrees per minute
+        var minuteDeg = minutes * 6; // 360 degrees in 60 minutes, 6 degrees per minute
+        var secondDeg = seconds * 6; // 360 degrees in 60 seconds, 6 degrees per second
+
+        hourHand.style.transform = 'rotate(' + hourDeg + 'deg)';
+        minuteHand.style.transform = 'rotate(' + minuteDeg + 'deg)';
+        secondHand.style.transform = 'rotate(' + secondDeg + 'deg)';
+    }
+
+    setInterval(setClock, 1000);
+</script>
+
+</body>
+</html>
+
+
+

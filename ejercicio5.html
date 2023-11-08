@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Formulario de Registro</h2>
+  <form id="myForm" onsubmit="return validateForm()">
+    <div>
+      <label for="name">Nombre:</label><br>
+      <input type="text" id="name" name="name"><br>
+      <span id="nameError" class="error"></span>
+    </div>
+    <div>
+      <label for="email">Correo Electrónico:</label><br>
+      <input type="email" id="email" name="email"><br>
+      <span id="emailError" class="error"></span>
+    </div>
+    <div>
+      <label for="password">Contraseña:</label><br>
+      <input type="password" id="password" name="password"><br>
+      <span id="passwordError" class="error"></span>
+    </div>
+    <br>
+    <input type="submit" value="Enviar">
+  </form>
+
+  <script>
+    function validateForm() {
+      let name = document.forms["myForm"]["name"].value;
+      let email = document.forms["myForm"]["email"].value;
+      let password = document.forms["myForm"]["password"].value;
+
+      if (name === "") {
+        document.getElementById("nameError").innerHTML = "Por favor, ingresa tu nombre";
+        return false;
+      }
+      if (email === "") {
+        document.getElementById("emailError").innerHTML = "Por favor, ingresa tu correo electrónico";
+        return false;
+      }
+      if (password === "") {
+        document.getElementById("passwordError").innerHTML = "Por favor, ingresa tu contraseña";
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>

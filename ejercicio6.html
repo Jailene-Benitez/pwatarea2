@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Lista de Tareas</h2>
+
+<input type="text" id="taskInput" placeholder="Añadir nueva tarea">
+<button onclick="newElement()">Añadir</button>
+
+<ul id="taskList">
+</ul>
+
+<script>
+function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("taskInput").value;
+    var text = document.createTextNode(inputValue);
+    li.appendChild(text);
+
+    if (inputValue === '') {
+        alert("¡Debes escribir algo!");
+    } else {
+        document.getElementById("taskList").appendChild(li);
+    }
+    document.getElementById("taskInput").value = "";
+
+    var closeBtn = document.createElement("span");
+    var txt = document.createTextNode("\u00D7");
+    closeBtn.className = "close";
+    closeBtn.appendChild(txt);
+    li.appendChild(closeBtn);
+
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
